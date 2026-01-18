@@ -1,0 +1,114 @@
+/* General Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background-color: #F9F8F6;
+    color: #1A1A1A;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* Header & Nav */
+nav {
+    padding: 2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F9F8F6;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+/* About Section */
+.about {
+    padding: 4rem 10%;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.about h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+}
+
+/* Catalog Swipe Logic */
+.catalog {
+    padding: 2rem 0;
+    overflow-x: hidden;
+}
+.product-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-left: 5%;
+    gap: 1.5rem;
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+.product-wrapper::-webkit-scrollbar { display: none; } /* Hide for Chrome */
+
+.product-card {
+    flex: 0 0 80%; /* Shows 80% of the card on mobile, hinting at the next one */
+    scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+    .product-card { flex: 0 0 30%; } /* Shows 3 cards on desktop */
+}
+
+/* Image Hover & Aesthetism */
+.product-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #E5E5E5;
+}
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s ease;
+}
+.product-image .secondary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+/* Hover Effects */
+.product-card:hover .secondary { opacity: 1; }
+.product-card:hover .primary { opacity: 0; }
+
+.size-selector {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    transform: translateY(100%);
+    transition: 0.4s ease;
+}
+.product-card:hover .size-selector { transform: translateY(0); }
+
+.size-selector span {
+    margin: 0 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.product-info {
+    margin-top: 1rem;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
