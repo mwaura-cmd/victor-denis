@@ -46,21 +46,27 @@ nav {
 }
 .product-wrapper {
     display: flex;
-    flex-wrap: wrap; /* This allows the 3rd and 4th items to move to a new row */
-    justify-content: space-between; /* This puts equal space between the two columns */
+    flex-wrap: nowrap; /* Forces everything into one single horizontal line */
+    overflow-x: auto;  /* Enables the horizontal sliding/scrolling */
+    scroll-snap-type: x mandatory; /* Makes the cards "snap" into the center when sliding */
+    gap: 20px;         /* Keeps consistent spacing between the pieces */
     padding: 2rem 5%;
-    gap: 20px; /* Space between the rows and columns */
+    scrollbar-width: none; /* Hides the scrollbar for that clean aesthetic */
+    -webkit-overflow-scrolling: touch; /* Makes the slide feel smooth on iPhones */
+}
+
+.product-wrapper::-webkit-scrollbar {
+    display: none; /* Hides the scrollbar on Chrome and Safari */
 }
 
 .product-card {
-    /* (100% / 2) - gap = roughly 48% to fit two per row */
-    flex: 0 0 48%; 
-    margin-bottom: 2rem; /* Space below each product */
+    flex: 0 0 85%; /* Shows most of the product while hinting at the next one */
+    scroll-snap-align: center; /* Centers the product card in the view after a slide */
 }
 
 @media (min-width: 768px) {
     .product-card {
-        flex: 0 0 23%; /* On laptop, it will automatically show 4 side-by-side */
+        flex: 0 0 30%; /* Shows three products side-by-side on a laptop */
     }
 }
 .product-wrapper::-webkit-scrollbar { display: none; } /* Hide for Chrome */
