@@ -44,36 +44,23 @@ nav {
     padding: 2rem 0;
     overflow-x: hidden;
 }
-<div class="product-wrapper">
-
-    <div class="product-card">...</div>
-
-    <div class="product-card">...</div>
-
-    <div class="product-card">...</div>
-
-    <div class="product-card">...</div>
-
-</div> ```
-
 .product-wrapper {
     display: flex;
-    flex-wrap: nowrap; /* This is the key - it forces one single line */
-    overflow-x: auto;  /* This enables the horizontal swipe */
-    scroll-snap-type: x mandatory;
-    gap: 2rem;         /* Clean spacing between items */
+    flex-wrap: wrap; /* This allows the 3rd and 4th items to move to a new row */
+    justify-content: space-between; /* This puts equal space between the two columns */
     padding: 2rem 5%;
-    scrollbar-width: none; /* Keeps it minimalist */
+    gap: 20px; /* Space between the rows and columns */
 }
 
 .product-card {
-    flex: 0 0 80%; /* On phone, takes 80% width so you see the next one */
-    scroll-snap-align: start;
+    /* (100% / 2) - gap = roughly 48% to fit two per row */
+    flex: 0 0 48%; 
+    margin-bottom: 2rem; /* Space below each product */
 }
 
 @media (min-width: 768px) {
     .product-card {
-        flex: 0 0 30%; /* On laptop/desktop, shows 3 items comfortably */
+        flex: 0 0 23%; /* On laptop, it will automatically show 4 side-by-side */
     }
 }
 .product-wrapper::-webkit-scrollbar { display: none; } /* Hide for Chrome */
