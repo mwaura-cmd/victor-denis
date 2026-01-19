@@ -44,13 +44,37 @@ nav {
     padding: 2rem 0;
     overflow-x: hidden;
 }
+<div class="product-wrapper">
+
+    <div class="product-card">...</div>
+
+    <div class="product-card">...</div>
+
+    <div class="product-card">...</div>
+
+    <div class="product-card">...</div>
+
+</div> ```
+
 .product-wrapper {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: nowrap; /* This is the key - it forces one single line */
+    overflow-x: auto;  /* This enables the horizontal swipe */
     scroll-snap-type: x mandatory;
-    padding-left: 5%;
-    gap: 1.5rem;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    gap: 2rem;         /* Clean spacing between items */
+    padding: 2rem 5%;
+    scrollbar-width: none; /* Keeps it minimalist */
+}
+
+.product-card {
+    flex: 0 0 80%; /* On phone, takes 80% width so you see the next one */
+    scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+    .product-card {
+        flex: 0 0 30%; /* On laptop/desktop, shows 3 items comfortably */
+    }
 }
 .product-wrapper::-webkit-scrollbar { display: none; } /* Hide for Chrome */
 
